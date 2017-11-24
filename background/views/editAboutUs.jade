@@ -1,0 +1,181 @@
+extends manageLayout
+
+block content
+  section.manageSection
+    .box-content.upload
+      form.form-horizontal(name='aboutUsForm' ,method='post', action='/manage/addAboutUs'  target="_blank")
+          fieldset.manageFieldset#getImgIndex
+            .control-group
+              label.control-label(for="typeahead") 介绍页大标题
+              .controls
+                input#typeahead.span4.typeahead(type="text" name='bname' value="#{title ? title : 'About Us' }")
+                //- p.help-block Start typing to activate auto complete!
+            .control-group.hidden-phone
+              label.control-label(for="desc_txt") 介绍页描述
+              |                               
+              .controls
+                textarea#desc_txt.span66(name='desc_txt' class='cleditor' rows='8') #{desc_txt ? desc_txt : ''}
+            -if(!!content && content != '[]')
+              -for(var i in JSON.parse(content))
+                .infoBlock.light-bg
+                  .control-group
+                    label.control-label(for="curImg") 介绍图片
+                    -if(!!JSON.parse(content)[i]['img'] && null != JSON.parse(content)[i]['img'] && ''!= JSON.parse(content)[i]['img'])
+                      .controls.ciBox(style='visibility:visible;')
+                        .upload-container
+                          a(href='#' target='_blank') 
+                            img.upImg.1(src="#{JSON.parse(content)[i]['img']}")
+                        span.input-group-addon.searchAddon.imgDelBtn
+                          button.searchClose.closeBtn
+                            span.glyphicon.glyphicon-remove.iconSpan
+                      .controls.imgBox(style='display:none;')
+                        .upload-container.upBox
+                          .upTex
+                            span.upIcon
+                              i.fa.fa-plus
+                            span 点击上传
+                          input.imgFile(name='inputFile',type='file', class="fileupload")
+                          input.curImg(name='curImg' type='text' style='visibility:hidden' value="#{imgs ? imgs : '' }")
+                    -else
+                      .controls.ciBox
+                        .upload-container
+                          a(href='#' target='_blank') 
+                            img.upImg(src="#{JSON.parse(content)[i]['img']}")
+                        span.input-group-addon.searchAddon.imgDelBtn
+                          button.searchClose.closeBtn
+                            span.glyphicon.glyphicon-remove.iconSpan
+                      .controls.imgBox
+                        .upload-container.upBox
+                          .upTex
+                            span.upIcon
+                              i.fa.fa-plus
+                            span 点击上传
+                          input.imgFile(name='inputFile',type='file', class="fileupload")
+                          input.curImg(name='curImg' type='text' style='visibility:hidden' value="#{imgs ? imgs : '' }")
+
+
+                  |     
+                  .control-group.hidden-phone
+                    label.control-label(for="subTile") 介绍小标题
+                    |                               
+                    .controls
+                      input.subTile.span66(name='subTitle' type='text' value="#{JSON.parse(content)[i]['title']}") 
+                      //- input.subTile.span66(name='subTile' type='text' value="#{subTitle ? subTitle : ''}") 
+                  |                        
+                  .control-group.hidden-phone
+                    label.control-label(for="info") 介绍详情
+                    |                               
+                    .controls
+                      textarea.info.span66(name='info' class='cleditor' rows='8') #{JSON.parse(content)[i]['value']}
+                      //- textarea.info.span66(name='info' class='cleditor' rows='8') #{info ? info : ''}
+                //- .infoBlock.light-bg
+                //-   .control-group
+                //-     label.control-label(for="curImg") 介绍图片
+                //-     .controls.ciBox
+                //-       .upload-container
+                //-         a(href='#' target='_blank')
+                //-           img.upImg(src="")
+                //-       span.input-group-addon.searchAddon.imgDelBtn
+                //-         button.searchClose.closeBtn
+                //-           span.glyphicon.glyphicon-remove.iconSpan
+                //-     .controls.imgBox
+                //-         .upload-container.upBox
+                //-           .upTex
+                //-             span.upIcon
+                //-               i.fa.fa-plus
+                //-             span 点击上传
+                //-           input.imgFile(name='inputFile',type='file', class="fileupload")
+                //-           input.curImg(name='curImg' type='text' style='visibility:hidden' value="#{two ? two : '' }")
+
+                //-   |     
+                //-   .control-group.hidden-phone
+                //-     label.control-label(for="subTile") 介绍小标题
+                //-     |                               
+                //-     .controls
+                //-       input.subTile.span66(name='subTile' type='text' value="#{subTitle ? subTitle : ''}") 
+                //-   |                        
+                //-   .control-group.hidden-phone
+                //-     label.control-label(for="info") 介绍详情
+                //-     |                               
+                //-     .controls
+                //-       textarea.info.span66(name='desc' class='cleditor' rows='8') #{info ? info : ''}
+                //- .infoBlock.light-bg
+                //-   .control-group
+                //-     label.control-label(for="curImg") 介绍图片
+                //-     .controls.ciBox
+                //-       .upload-container
+                //-         a(href='#' target='_blank')
+                //-           img.upImg(src="")
+                //-       span.input-group-addon.searchAddon.imgDelBtn
+                //-         button.searchClose.closeBtn
+                //-           span.glyphicon.glyphicon-remove.iconSpan
+                //-     .controls.imgBox
+                //-         .upload-container.upBox
+                //-           .upTex
+                //-             span.upIcon
+                //-               i.fa.fa-plus
+                //-             span 点击上传
+                //-           input.imgFile(name='inputFile',type='file', class="fileupload")
+                //-           input.curImg(name='curImg' type='text' style='visibility:hidden' value="#{two ? two : '' }")
+
+                //-   |     
+                //-   .control-group.hidden-phone
+                //-     label.control-label(for="subTile") 介绍小标题
+                //-     |                               
+                //-     .controls
+                //-       input.subTile.span66(name='subTile' type='text' value="#{subTitle ? subTitle : ''}") 
+                //-   |                        
+                //-   .control-group.hidden-phone
+                //-     label.control-label(for="info") 介绍详情
+                //-     |                               
+                //-     .controls
+                //-       textarea.info.span66(name='desc' class='cleditor' rows='8') #{info ? info : ''}
+            -else
+              .infoBlock.light-bg
+                .control-group
+                  label.control-label(for="curImg") 介绍图片
+                  .controls.ciBox
+                    .upload-container
+                      a(href='#' target='_blank') 
+                        img.upImg(src="")
+                    span.input-group-addon.searchAddon.imgDelBtn
+                      button.searchClose.closeBtn
+                        span.glyphicon.glyphicon-remove.iconSpan
+                  .controls.imgBox
+                    .upload-container.upBox
+                      .upTex
+                        span.upIcon
+                          i.fa.fa-plus
+                        span 点击上传
+                      input.imgFile(name='inputFile',type='file', class="fileupload")
+                      input.curImg(name='curImg' type='text' style='visibility:hidden' value="")
+                |     
+                .control-group.hidden-phone
+                  label.control-label(for="subTile") 介绍小标题
+                  |                               
+                  .controls
+                    input.subTile.span66(name='subTitle' type='text' value="") 
+                    //- input.subTile.span66(name='subTile' type='text' value="#{subTitle ? subTitle : ''}") 
+                |                        
+                .control-group.hidden-phone
+                  label.control-label(for="info") 介绍详情
+                  |                               
+                  .controls
+                    textarea.info.span66(name='info' class='cleditor' rows='8')
+          .againRow 再增加一段
+          input#allImg(name='allImg' type='text' style='visibility:hidden')
+          .form-actions.upBtns
+            //- button.btn.btn-primary.subBtn(type='button') Save changes
+            button.btn.btn-primary.subBtn(type="submit") Save changes
+            |                               
+            button.btn.cancelBtn Cancel
+    script.
+      //- console.log(33333,!{content}[1]['value'])
+      //- console.log(4444444,JSON.parse('!{content}')[0]['img'] != null)
+      //- console.log(333,!{content}[0]['img'])
+      //- console.log('pnama:',#{pname})
+      if('#{msg}' != '')
+        window.wxc.xcConfirm('#{msg}', window.wxc.xcConfirm.typeEnum.info)
+        //- alert('#{msg}')
+
+    script(type='text/javascript', src="/conm/editAboutUs.js")

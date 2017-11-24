@@ -1,0 +1,60 @@
+//- doctype html
+//- html.no-js(lang="en")
+//-   head
+//-     meta(charset="UTF-8")
+//-     meta(http-equiv="X-UA-Compatible", content="IE=edge")
+//-     |  
+//-     meta(name="viewport", content="width=device-width, initial-scale=1")
+//-     |  
+//-     title login
+//-     link(rel="stylesheet", type="text/css", href="/stylesheets/normalize.css")
+//-     link(rel="stylesheet", type="text/css", href="/stylesheets/demo.css")
+//-     // 必要样式
+//-     link(rel="stylesheet", type="text/css", href="/stylesheets/component.css")
+//-     //if IE
+//-       script(src="/stylesheets/html5.js")
+//-   body
+extends layoutwithbar
+
+block content
+    .container.demo-1
+      .content
+        #large-header.large-header
+          canvas#demo-canvas
+          |                     
+          .logo_box
+            h3 添加用户
+            |                       
+            form(action="/registering", name="registerForm", method="post")
+              .input_outer
+                span.u_user
+                |                               
+                input.text(name="rename", style="color: #FFFFFF !important", type="text",autofocus placeholder="请输入账户" autocomplete="off")
+              |                             
+              .input_outer
+                span.us_uer
+                |                               
+                input.text(name="repass", style="color: #FFFFFF !important; position:absolute; z-index:100;", value="", type="password", placeholder="请输入密码" autocomplete="off")
+              |                             
+              .input_outer
+                span.us_uer
+                |                               
+                input.text(name="againpass", style="color: #FFFFFF !important; position:absolute; z-index:100;", value="", type="password", placeholder="请再次输入密码" autocomplete="off")
+              |                             
+              .mb2.register
+                button.act-but.submit(type='submit') 添加
+              //- .mb2.login
+                a.act-but.submit(href="/login") 登 录
+        script.
+            if('#{msg}' != '')
+              window.wxc.xcConfirm('#{msg}', window.wxc.xcConfirm.typeEnum.info)
+              //- alert('#{msg}')
+    //- // /container
+    //- script(src="/javascripts/TweenLite.min.js")
+    //- |       
+    //- script(src="/javascripts/EasePack.min.js")
+    //- |       
+    //- script(src="/javascripts/rAF.js")
+    //- |       
+    //- script(src="/javascripts/demo-1.js")      
+

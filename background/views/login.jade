@@ -1,0 +1,67 @@
+//- doctype html
+//- html.no-js(lang="en")
+//-   head
+//-     meta(charset="UTF-8")
+//-     meta(http-equiv="X-UA-Compatible", content="IE=edge")
+//-     |  
+//-     meta(name="viewport", content="width=device-width, initial-scale=1")
+//-     |  
+//-     title login
+//-     link(rel="stylesheet", type="text/css", href="/stylesheets/normalize.css")
+//-     link(rel="stylesheet", type="text/css", href="/stylesheets/demo.css")
+//-     // 必要样式
+//-     link(rel="stylesheet", type="text/css", href="/stylesheets/component.css")
+
+//-     //if IE
+//-       script(src="/stylesheets/html5.js")
+//-   body
+extends layoutwithbar
+
+block content
+    .container.demo-1
+      .content
+        #large-header.large-header
+          canvas#demo-canvas
+          |                     
+          .logo_box
+            h3 欢迎你
+            |                       
+            form(id='loginForm', action="/logging", name="loginForm", method="post")
+              .input_outer
+                span.u_user
+                |                               
+                input.uname.text( name="uname",id='uname', style="color: #FFFFFF !important", type="text",autofocus placeholder="请输入账户")
+              |                             
+              .input_outer
+                span.us_uer
+                |                               
+                input.pwd.text(name="pwd", style="color: #FFFFFF !important; position:absolute; z-index:100;", value="", type="text",onfocus="this.type='password'", placeholder="请输入密码")
+              |                             
+              .mb2.login
+                button.act-but.submit(type='submit' style="color: #FFFFFF;cursor: pointer;") 登 录
+              - if(hasUs == true)
+                .mb2.register
+                  a.act-but.submit(href="/register", style="color: #FFFFFF;background:transparent;") 注 册
+              .remamber
+                |                               
+                input#rmbUser(name="remamber",type="checkbox", value='',onclick='setRemember()') 
+
+                span.marginL 记住密码  
+    script.
+      console.log(222,'#{hasUs}' == 'true')
+      if('#{msg}' != '')
+        window.wxc.xcConfirm('#{msg}', window.wxc.xcConfirm.typeEnum.info)
+        //- alert('#{msg}')
+    //- // /container
+    //- script(type='text/javascript', src='/javascripts/jquery-1.10.2.min.js')
+    //- | 
+    //- script(src="/javascripts/TweenLite.min.js")
+    //- |       
+    //- script(src="/javascripts/EasePack.min.js")
+    //- |       
+    //- script(src="/javascripts/rAF.js")
+    //- |       
+    //- script(src="/javascripts/demo-1.js")  
+    //- |       
+    //- script(src="/javascripts/xcConfirm.js")     
+    script(type='text/javascript',src="/conm/login.js") 

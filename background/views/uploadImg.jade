@@ -1,0 +1,120 @@
+extends manageLayout
+
+block content
+  section.manageSection
+            //-.container-fluid-full
+              //- #content.span10            
+                  //-.row-fluid.sortable
+                    //-.box.span12
+                      //-.box-header(data-original-title="")
+                        //-h2
+                          //-i.halflings-icon.white.user
+                          //-span.break
+                          //-| Members  */           
+            .box-content.upload
+              form.form-horizontal(name='picForm' ,method='post', action='/manage/savePro?id=#{pid ? pid : 0}')
+                  fieldset.manageFieldset
+                    //- .control-group
+                    //-   label.control-label(for="typeahead") Auto complete 
+                    //-   |                               
+                    //-   .controls
+                    //-     input#typeahead.span6.typeahead(type="text", data-provide="typeahead", data-items="4", data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]')
+                    //-     |                               
+                    //-     p.help-block Start typing to activate auto complete!
+                    //- |     
+                    .control-group
+                      label.control-label(for="typeahead") 商品名称
+                      |                               
+                      .controls
+                        input#typeahead.span4.typeahead(type="text" name='pname' value="#{pname ? pname : '' }")
+                        |                               
+                        //- p.help-block Start typing to activate auto complete!
+                    |  
+                    //- .control-group
+                      label.control-label(for="price") 商品价格
+                      |                               
+                      .controls
+                        input#price.span4.typeahead(type="number" name='price' value="#{price ? price : '' }")
+                    |   
+                    .control-group
+                      label.control-label(for="psort") 商品分类
+                      |                               
+                      .controls
+                        select#psort.form-control(name='sort')
+                          -for(var j in JSON.parse(sorts))
+                            option(value='#{j}') #{JSON.parse(sorts)[j]}
+                        //- input#psort.span4.typeahead(type="number" name='sort' value="#{sort ? sort : '' }")
+                    |   
+                    //- .control-group
+                      label.control-label(for="pstate") 商品状态
+                      |                               
+                      .controls
+                        input#pstate.span4.typeahead(type="number" name='state' value="#{state ? state : '' }")
+                    |                             
+                    //- .control-group
+                    //-   label.control-label(for="date01") Date input
+                    //-   |                               
+                    //-   .controls
+                    //-     input#date01.input-xlarge.datepicker(type="text", value="02/16/12")
+                    //- |                           
+                    //- .control-group
+                    //-   label.control-label(for="fileInput") File input
+                    //-   |                               
+                    //-   .controls
+                    //-     input#fileInput.input-file.uniform_on(type="file")
+                    //- |                           
+                    //- .control-group
+                    //-   label.control-label(for="j_imgfile") 商品图片
+                    //-   .controls
+                    //-       .upload-container.upImgs
+                    //-         a(href='#{path0}')
+                    //-           img.upImg(src="#{path0 ? path0 : '/images/addBg.png' }")
+                    //-       .upload-container.upImgs
+                    //-         img.upImg(src="#{path1 ? path1 : '/images/addBg.png' }")
+                    //-       .upload-container.upImgs
+                    //-         img.upImg(src="#{path2 ? path2 : '/images/addBg.png' }")
+                    //-       .upload-container
+                    //-         .upTex
+                    //-           span.upIcon
+                    //-               i.fa.fa-plus
+                    //-           span 点击上传
+                    //-         input(name='inputFile',id='j_imgfile', type='file', multiple='mutiple',class="fileupload")
+                    |          
+                    .control-group
+                      label.control-label(for="j_imgfile") 商品图片
+                      .controls#imgsBox
+                          //- script.
+                            var imgs = $('#imgsBox').attr('value') ? JSON.parse($('#imgsBox').attr('value')) : null
+                            console.log(imgs)
+                            // -for(var i in imgs)
+                            .upload-container.upImgs
+                              a(href='#{imgs[i]}')
+                                img#imgId.upImg(src="#{imgs[i] ? imgs[i] : '/images/addBg.png' }")
+                          #upBox.upload-container.upBox
+                            .upTex
+                              span.upIcon
+                                  i.fa.fa-plus
+                              span 点击上传
+                            input(name='inputFile',id='j_imgfile', type='file', multiple='mutiple',class="fileupload")
+                            input(name='allImg' id='allImg' type='text' style='visibility:hidden' value="#{imgs ? imgs : '' }")
+
+                    |                           
+                    .control-group.hidden-phone
+                      label.control-label(for="textarea") 商品描述
+                      |                               
+                      .controls
+                        textarea#textarea.span66(name='desc' class='cleditor' rows='8') #{desc_txt ? desc_txt : ''}
+                    |                           
+                    .form-actions.upBtns
+                      //- button.btn.btn-primary.subBtn(type='button') Save changes
+                      button.btn.btn-primary.subBtn(type="submit") Save changes
+                      |                               
+                      button.btn.cancelBtn Cancel
+            script.
+              //- console.log(!{sorts})
+              //- console.log('pnama:',#{pname})
+              if('#{msg}' != '')
+                window.wxc.xcConfirm('#{msg}', window.wxc.xcConfirm.typeEnum.info)
+                //- alert('#{msg}')
+
+    script(type='text/javascript', src="/conm/upload.js")

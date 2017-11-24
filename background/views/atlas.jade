@@ -1,0 +1,32 @@
+extends layout
+
+block content      
+  section
+    .container
+      .row 
+        .htmleaf-container.atlas_current
+          .htmleaf-content.bgcolor-3
+            ul.pgwSlideshow
+              -for(var i in JSON.parse(imgs))
+                li
+                  //- img(src="#{JSON.parse(imgs)[i]}", alt="San Francisco, USA", data-description="Golden Gate Bridge")
+                  img(src="#{JSON.parse(imgs)[i]['img']}" alt="#{JSON.parse(imgs)[i]['name']}" data-description="#{JSON.parse(imgs)[i]['desc']}")
+
+            div(style="text-align:center;clear:both")
+        //- .proDesc.col-md-5
+        //-   .skills-text
+        //-     h2 #{pname}
+        //-     |               
+        //-     p  
+        //-       | ￥#{price.toFixed(2) }
+        //-     pre
+        //-       | #{desc_txt}
+
+      script.
+        //- console.log(!{imgs})
+        //- for(var i in !{imgs})
+        //-   console.log(i) 
+        //-   console.log(!{imgs}[i])
+  script(type='text/javascript', src="/conm/proDesc.js")
+  //- script(type='text/javascript', src="/javascripts/pgwslideshow.min.js")
+            

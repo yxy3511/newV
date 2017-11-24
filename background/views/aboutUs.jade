@@ -1,0 +1,59 @@
+extends layout
+
+block content
+    section#aboutMe.light-bg.content
+      .container
+        -if(!!vals) 
+          .row
+            .col-lg-12.text-center
+              .section-title
+                h2= JSON.parse(vals)['title']
+                | 							
+                p= JSON.parse(vals)['desc_txt']
+          -for(var i in JSON.parse(JSON.parse(vals)['content']))
+            if(i%2 == 0)		
+              .row
+                // about module
+                -if(!!JSON.parse(JSON.parse(vals)['content'])[i]['img'] && ''!=JSON.parse(JSON.parse(vals)['content'])[i]['img'])
+                  .col-md-3.text-center.marginB
+                    .mz-module-about.aboutImg
+                      //- i.fa.fa-briefcase.ot-circle
+                      img(src="#{JSON.parse(JSON.parse(vals)['content'])[i]['img']}")
+                      | 	
+                .col-md-8.aboutLeft					
+                  h3= JSON.parse(JSON.parse(vals)['content'])[i]['title']
+                  | 							
+                  pre= JSON.parse(JSON.parse(vals)['content'])[i]['value']
+            -else
+             .row
+               // about module
+               .col-md-8.aboutLeft         
+                 h3= JSON.parse(JSON.parse(vals)['content'])[i]['title']
+                 |               
+                 pre= JSON.parse(JSON.parse(vals)['content'])[i]['value']
+               -if(!!JSON.parse(JSON.parse(vals)['content'])[i]['img'] && ''!=JSON.parse(JSON.parse(vals)['content'])[i]['img'])
+                 .col-md-3.text-center.marginB
+                   .mz-module-about.aboutImg
+                      img(src="#{JSON.parse(JSON.parse(vals)['content'])[i]['img']}")
+            //- .row
+            //-   // about module
+            //-   .col-md-3.text-center.marginB
+            //-     .mz-module-about.aboutImg
+            //-       //- i.fa.fa-briefcase.ot-circle
+            //-       img(src='/images/demo/author-4.jpg')
+            //-       |   
+            //-   .col-md-8.aboutLeft         
+            //-     h3 Web Development
+            //-     |               
+            //-     p At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+        -else
+          .center
+            h1.noContent= msg
+    script.
+      //- console.log(11,!{vals})
+      //- console.log(222,!!JSON.parse(!{vals}['content'])['img'])
+      //- console.log(333,'#{msg}')
+      if('#{msg}' != '' && '#{msg}' != '暂无介绍')
+        setTimeout(window.wxc.xcConfirm('#{msg}', window.wxc.xcConfirm.typeEnum.info),8000);
+        //- alert('#{msg}')
+

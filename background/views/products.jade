@@ -1,0 +1,177 @@
+extends layout
+
+block content
+  section.light-bg
+      .container
+        .row(id='product')
+          .col-lg-12.text-center
+            .section-title
+              h2 Products
+              | 						
+              p
+                | There is no perfection in the world, but we are always pursuing perfection.
+                
+          .col-lg-3#searchForm
+            //- form.form-horizontal(action="", method="get")
+            span#searchIcon.glyphicon.glyphicon-search
+            #searchInput.input-group.search-input-group
+              input#searchIn.form-control(name="key", autocomplete="on", type="text", placeholder="输入要搜索的内容关键字")
+              span#closeIcon.input-group-addon
+                button.bnt
+                  span.glyphicon.glyphicon-remove
+        -for(var i in JSON.parse(vals))
+          // -console.log(JSON.parse(JSON.parse(vals)[i].imgs)[0])
+          -var curId = parseInt(i); 
+          -if(curId % 3 == 0)           
+            .row
+          // start portfolio item
+          a.col-md-4(href="/proDesc/#{JSON.parse(vals)[i].pid}")
+            .ot-portfolio-item
+              figure.effect-bubba
+                img.img-responsive(src="#{JSON.parse(JSON.parse(vals)[i].imgs)[0] ? JSON.parse(JSON.parse(vals)[i].imgs)[0] : '/images/demo/portfolio-2.jpg'}")
+                | 							
+                figcaption
+                  h2 #{JSON.parse(vals)[i].pname}
+                  | 								
+                  p.descTxt #{JSON.parse(vals)[i].desc_txt}
+          // end portfolio item
+          // start portfolio item
+        //-   .col-md-4
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-2.jpg", alt="img02")
+        //-         | 							
+        //-         figcaption
+        //-           h2 Gym Shoes
+        //-           | 								
+        //-           p Exercise more fun
+        //-           | 								
+        //-   // end portfolio item
+        //-   // start portfolio item
+        //-   .col-md-4
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-3.jpg", alt="img02")
+        //-         | 							
+        //-         figcaption
+        //-           h2 Crocs & Beach Shoes
+        //-           | 								
+        //-           p Enjoy yourself more
+        //-           | 								
+        //-   // end portfolio item
+        //- | 			
+        //- .row
+        //-   // start portfolio item
+        //-   .col-md-4
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-4.jpg", alt="img02")
+        //-         | 							
+        //-         figcaption
+        //-           h2 Sandals
+        //-           | 								
+        //-           p Cool summer
+        //-           | 								
+        //-   // end portfolio item
+        //-   // start portfolio item
+        //-   .col-md-4
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-5.jpg", alt="img02")
+        //-         | 							
+        //-         figcaption
+        //-           h2 High-heeled Shoes
+        //-           | 								
+        //-           p Beautiful summer
+        //-           | 								
+        //-   // end portfolio item
+        //-   // start portfolio item
+        //-   .col-md-4
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-2.jpg", alt="img02")
+        //-         | 							
+        //-         figcaption
+        //-           h2 Running shoes
+        //-           | 								
+        //-           p Higher, faster, stronger
+        //-           | 				      
+        //- .row
+        //-   // start portfolio item
+        //-   a.col-md-4(href="/products")
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-1.jpg", alt="img02")
+        //-         |               
+        //-         figcaption
+        //-           h2 Leather Shoes
+        //-           |                 
+        //-           p Leather manufacturing
+        //-   // end portfolio item
+        //-   // start portfolio item
+        //-   .col-md-4
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-2.jpg", alt="img02")
+        //-         |               
+        //-         figcaption
+        //-           h2 Gym Shoes
+        //-           |                 
+        //-           p Exercise more fun
+        //-           |                 
+        //-   // end portfolio item
+        //-   // start portfolio item
+        //-   .col-md-4
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-3.jpg", alt="img02")
+        //-         |               
+        //-         figcaption
+        //-           h2 Crocs & Beach Shoes
+        //-           |                 
+        //-           p Enjoy yourself more
+        //-           |                 
+        //-   // end portfolio item
+        //- |       
+        //- .row
+        //-   // start portfolio item
+        //-   .col-md-4
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-4.jpg", alt="img02")
+        //-         |               
+        //-         figcaption
+        //-           h2 Sandals
+        //-           |                 
+        //-           p Cool summer
+        //-           |                 
+        //-   // end portfolio item
+        //-   // start portfolio item
+        //-   .col-md-4
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-5.jpg", alt="img02")
+        //-         |               
+        //-         figcaption
+        //-           h2 High-heeled Shoes
+        //-           |                 
+        //-           p Beautiful summer
+        //-           |                 
+        //-   // end portfolio item
+        //-   // start portfolio item
+        //-   .col-md-4
+        //-     .ot-portfolio-item
+        //-       figure.effect-bubba
+        //-         img.img-responsive(src="images/demo/portfolio-2.jpg", alt="img02")
+        //-         |               
+        //-         figcaption
+        //-           h2 Running shoes
+        //-           |                 
+        //-           p Higher, faster, stronger
+        //-           | 
+  script.
+    //- console.log(JSON.parse(!{vals}[0].imgs))
+    if('#{msg}' != '')
+        window.wxc.xcConfirm('#{msg}', window.wxc.xcConfirm.typeEnum.info)
+        //- alert('#{msg}')    
+  script(type='text/javascript', src="/conm/products.js")

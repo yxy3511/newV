@@ -1,0 +1,453 @@
+extends layout
+
+block content
+    header
+      .container
+        .slider-container
+          .intro-text
+            .intro-lead-in Welcome To Our Family!
+            | 						
+            .intro-heading It's Nice To Meet You
+            | 						
+            a#knowMore.page-scroll.btn.btn-xl(href="#about") Know More！
+    | 		
+    section#about.light-bg
+      .container
+        .row
+          .col-lg-12.text-center
+            .section-title
+              h2 view mode
+                //- a(href="/aboutUs") ABOUT US
+              | 							
+              p
+                | We don't make shoes, but factory porters.
+        | 				
+        .row
+          // about module
+          //- .col-md-3.text-center
+          //-   .mz-module-about
+          //-     i.fa.fa-briefcase.ot-circle
+          //-     | 							
+          //-     h3 More Comfortable
+          //-     | 							
+          //-     p The feeling of comfort is more protective of your feet
+          // end about module
+          // about module
+          // end about module
+          // about module
+          .col-md-6.text-center
+            a.noLine(href='/atlas')
+              .mz-module-about
+                i.fa.fa-photo.ot-circle
+                //- i.fa.fa-camera-retro.ot-circle
+                | 
+                h3 随便看看(atlas)
+            | 							
+            p 通过查看图片，了解、选择产品。
+
+          .col-md-6.text-center
+            a.noLine(href='#portfolio') 
+              .mz-module-about
+                i.fa.fa-crosshairs.ot-circle
+                |        
+                h3 有目标的查看
+            |               
+            p 看自己感兴趣的产品。
+          // end about module
+          // about module
+          //- .col-md-3.text-center
+          //-   .mz-module-about
+          //-     i.fa.fa-cube.ot-circle
+          //-     | 							
+          //-     h3 More Special
+          //-     | 							
+          //-     p  Shoes with a sense of design, you are more special
+          // end about module
+      // /.container
+    | 		
+    //- section
+    //-   .container
+    //-     .row
+    //-       .col-md-6
+    //-         .skills-text
+    //-           h2 WE`RE CREATIVE
+    //-           | 							
+    //-           p
+    //-             | Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+    //-             br
+    //-             br
+    //-             | Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur?
+    //-       | 					
+    //-       .col-md-6
+    //-         // skill bar item
+    //-         .skillbar-item
+    //-           .skillbar-score
+    //-             span.score 90
+    //-             span.percent %
+    //-           | 							
+    //-           .skillbar(data-percent="90%")
+    //-             h3 Web design
+    //-             | 								
+    //-             .skillbar-bar
+    //-               .skillbar-percent(style="width: 90%;")
+    //-         // skill bar item
+    //-         .skillbar-item
+    //-           .skillbar-score
+    //-             span.score 80
+    //-             span.percent %
+    //-           | 							
+    //-           .skillbar(data-percent="80%")
+    //-             h3 Development
+    //-             | 								
+    //-             .skillbar-bar
+    //-               .skillbar-percent(style="width: 80%;")
+    //-         // skill bar item
+    //-         .skillbar-item
+    //-           .skillbar-score
+    //-             span.score 85
+    //-             span.percent %
+    //-           | 							
+    //-           .skillbar(data-percent="85%")
+    //-             h3 Photography
+    //-             | 								
+    //-             .skillbar-bar
+    //-               .skillbar-percent(style="width: 85%;")
+    //-         // skill bar item
+    //-         .skillbar-item
+    //-           .skillbar-score
+    //-             span.score 70
+    //-             span.percent %
+    //-           | 							
+    //-           .skillbar(data-percent="70%")
+    //-             h3 Marketing
+    //-             | 								
+    //-             .skillbar-bar
+    //-               .skillbar-percent(style="width: 70%;")
+    | 		
+    //- section.overlay-dark.bg-img1.dark-bg.short-section
+    //-   .container.text-center
+    //-     .row
+    //-       .col-md-3.mb-sm-30
+    //-         .counter-item
+    //-           h2(data-count="59") 59
+    //-           | 							
+    //-           h6 awards
+    //-       | 					
+    //-       .col-md-3.mb-sm-30
+    //-         .counter-item
+    //-           h2(data-count="1054") 1054
+    //-           | 							
+    //-           h6 Clients
+    //-       | 					
+    //-       .col-md-3.mb-sm-30
+    //-         .counter-item
+    //-           h2(data-count="34") 34
+    //-           | 							
+    //-           h6 Team
+    //-       | 					
+    //-       .col-md-3.mb-sm-30
+    //-         .counter-item
+    //-           h2(data-count="154") 154
+    //-           | 							
+    //-           h6 Project
+    | 		
+    section#portfolio
+      .container
+        .row
+          .col-lg-12.text-center
+            .section-title
+              h2
+                a(href="/products/0") Products
+              | 						
+              p
+                | There is no perfection in the world, but we are always pursuing perfection.
+        | 		
+        -for(var i in JSON.parse(vals))
+          -var curId = parseInt(i); 
+          -if(curId % 3 == 0)           
+            .row
+          // start portfolio item
+          a.col-md-4(href="/proDesc/#{JSON.parse(vals)[i].pid}")
+            .ot-portfolio-item
+              figure.effect-bubba
+                img.img-responsive(src="#{JSON.parse(JSON.parse(vals)[i].imgs)[0] ? JSON.parse(JSON.parse(vals)[i].imgs)[0] : 'images/demo/portfolio-2.jpg'}")
+                |               
+                figcaption
+                  h2 #{JSON.parse(vals)[i].pname}
+                  |                 
+                  p.descTxt #{JSON.parse(vals)[i].desc_txt}	
+    //-     .row
+    //-       // start portfolio item
+    //-       a.col-md-4(href="/products/0")
+    //-         .ot-portfolio-item
+    //-           figure.effect-bubba
+    //-             img.img-responsive(src="images/demo/portfolio-1.jpg", alt="img02")
+    //-             | 							
+    //-             figcaption
+    //-               h2 Leather Shoes
+    //-               | 								
+    //-               p Leather manufacturing
+    //-       // end portfolio item
+    //-       // start portfolio item
+    //-       .col-md-4
+    //-         .ot-portfolio-item
+    //-           figure.effect-bubba
+    //-             img.img-responsive(src="images/demo/portfolio-2.jpg", alt="img02")
+    //-             | 							
+    //-             figcaption
+    //-               h2 Gym Shoes
+    //-               | 								
+    //-               p Exercise more fun
+    //-               | 								
+    //-       // end portfolio item
+    //-       // start portfolio item
+    //-       .col-md-4
+    //-         .ot-portfolio-item
+    //-           figure.effect-bubba
+    //-             img.img-responsive(src="images/demo/portfolio-3.jpg", alt="img02")
+    //-             | 							
+    //-             figcaption
+    //-               h2 Crocs & Beach Shoes
+    //-               | 								
+    //-               p Enjoy yourself more
+    //-               | 								
+    //-       // end portfolio item
+    //-     | 			
+    //-     .row
+    //-       // start portfolio item
+    //-       .col-md-4
+    //-         .ot-portfolio-item
+    //-           figure.effect-bubba
+    //-             img.img-responsive(src="images/demo/portfolio-4.jpg", alt="img02")
+    //-             | 							
+    //-             figcaption
+    //-               h2 Sandals
+    //-               | 								
+    //-               p Cool summer
+    //-               | 								
+    //-       // end portfolio item
+    //-       // start portfolio item
+    //-       .col-md-4
+    //-         .ot-portfolio-item
+    //-           figure.effect-bubba
+    //-             img.img-responsive(src="images/demo/portfolio-5.jpg", alt="img02")
+    //-             | 							
+    //-             figcaption
+    //-               h2 High-heeled Shoes
+    //-               | 								
+    //-               p Beautiful summer
+    //-               | 								
+    //-       // end portfolio item
+    //-       // start portfolio item
+    //-       .col-md-4
+    //-         .ot-portfolio-item
+    //-           figure.effect-bubba
+    //-             img.img-responsive(src="images/demo/portfolio-2.jpg", alt="img02")
+    //-             | 							
+    //-             figcaption
+    //-               h2 Running shoes
+    //-               | 								
+    //-               p Higher, faster, stronger
+    //-               | 								
+    //-       // end portfolio item
+    //-   // end container
+    //- |         
+    //- section
+    //-   .container
+    //-     .row
+    //-       .col-lg-12.text-center
+    //-         .section-title
+    //-           h2 Our Partners
+    //-           | 							
+    //-           p Mida sit una namet, cons uectetur adipiscing adon elit.
+    //-     | 				
+    //-     .row
+    //-       .col-lg-12.text-center
+    //-         .owl-carousel
+    //-           .item
+    //-             .partner-logo
+    //-               img(src="images/demo/partners-1.png", alt="partners")
+    //-           | 							
+    //-           .item
+    //-             .partner-logo
+    //-               img(src="images/demo/partners-2.png", alt="partners")
+    //-           | 							
+    //-           .item
+    //-             .partner-logo
+    //-               img(src="images/demo/partners-3.png", alt="partners")
+    //-           | 							
+    //-           .item
+    //-             .partner-logo
+    //-               img(src="images/demo/partners-4.png", alt="partners")
+    //-           | 							
+    //-           .item
+    //-             .partner-logo
+    //-               img(src="images/demo/partners-5.png", alt="partners")
+    //-           | 							
+    //-           .item
+    //-             .partner-logo
+    //-               img(src="images/demo/partners-6.png", alt="partners")
+    //-           | 							
+    //-           .item
+    //-             .partner-logo
+    //-               img(src="images/demo/partners-7.png", alt="partners")
+    | 		
+    //- section#team.light-bg
+    //-   .container
+    //-     .row
+    //-       .col-lg-12.text-center
+    //-         .section-title
+    //-           h2 Our Team
+    //-           | 							
+    //-           p
+    //-             | A creative agency based on Candy Land, ready to boost your business with some beautifull templates. Lattes Agency is one of the best in town see more you will be amazed.
+    //-     | 				
+    //-     .row
+    //-       // team member item
+    //-       .col-md-3
+    //-         .team-item
+    //-           .team-image
+    //-             img.img-responsive(src="images/demo/author-2.jpg", alt="author")
+    //-           | 							
+    //-           .team-text
+    //-             h3 TOM BEKERS
+    //-             | 								
+    //-             .team-location Sydney, Australia
+    //-             | 								
+    //-             .team-position – CEO & Web Design –
+    //-             | 								
+    //-             p
+    //-               | Mida sit una namet, cons uectetur adipiscing adon elit. Aliquam vitae barasa droma.
+    //-       // end team member item
+    //-       // team member item
+    //-       .col-md-3
+    //-         .team-item
+    //-           .team-image
+    //-             img.img-responsive(src="images/demo/author-6.jpg", alt="author")
+    //-           | 							
+    //-           .team-text
+    //-             h3 LINA GOSATA
+    //-             | 								
+    //-             .team-location Los Angeles, California
+    //-             | 								
+    //-             .team-position – Photography –
+    //-             | 								
+    //-             p
+    //-               | Worsa dona namet, cons uectetur dipiscing adon elit. Aliquam vitae fringilla unda mir.
+    //-       // end team member item
+    //-       // team member item
+    //-       .col-md-3
+    //-         .team-item
+    //-           .team-image
+    //-             img.img-responsive(src="images/demo/author-3.jpg", alt="author")
+    //-           | 							
+    //-           .team-text
+    //-             h3 Larry Parker
+    //-             | 								
+    //-             .team-location Barcelona, Spain
+    //-             | 								
+    //-             .team-position – Development –
+    //-             | 								
+    //-             p
+    //-               | Aradan bes namet, cons uectetur moiscing adon elit. Aliquam vitae fringilla unda augue.
+    //-       // end team member item
+    //-       // team member item
+    //-       .col-md-3
+    //-         .team-item
+    //-           .team-image
+    //-             img.img-responsive(src="images/demo/author-4.jpg", alt="author")
+    //-           | 							
+    //-           .team-text
+    //-             h3 John BEKERS
+    //-             | 								
+    //-             .team-location Miami, Floria
+    //-             | 								
+    //-             .team-position – Marketing –
+    //-             | 								
+    //-             p
+    //-               | Dolor sit don namet, cons uectetur beriscing adon elit. Aliquam vitae fringilla unda.
+          // end team member item
+    | 		
+    //- section#contact.light-bg
+    //-   .container
+    //-     .row
+    //-       .col-lg-12.text-center
+    //-         .section-title
+    //-           h2
+    //-             a(href="/contact") Contact Us
+    //-           | 							
+    //-           p
+    //-             | If you have any questions, Please leave your questions and contact details.
+    //-             br
+    //-             | We will fix them for you
+    //-     | 				
+    //-     .row
+    //-       .col-md-5
+    //-         h3 Our Business Office
+    //-         | 						
+    //-         p 3422 Street, Barcelona 432, Spain, New Building North, 15th Floor
+    //-         | 						
+    //-         p
+    //-           i.fa.fa-phone
+    //-           |  +101 377 655 22125
+    //-         | 						
+    //-         p
+    //-           i.fa.fa-envelope
+    //-           |  mail@yxy3511.com
+          | 					
+          //- .col-md-3
+          //-   h3 Business Hours
+          //-   | 						
+          //-   p
+          //-     i.fa.fa-clock-o
+          //-     |  
+          //-     span.day Weekdays:
+          //-     span 9am to 8pm
+          //-   | 						
+          //-   p
+          //-     i.fa.fa-clock-o
+          //-     |  
+          //-     span.day Saturday:
+          //-     span 9am to 2pm
+          //-   | 						
+          //-   p
+          //-     i.fa.fa-clock-o
+          //-     |  
+          //-     span.day Sunday:
+          //-     span Closed
+          | 					
+          //- .col-md-6
+          //-   form#contactForm(name="sentMessage", novalidate="")
+          //-     .row
+          //-       .col-md-6
+          //-         .form-group
+          //-           input#name.form-control(type="text", placeholder="Your Name *", required="", data-validation-required-message="Please enter your name.")
+          //-           | 										
+          //-           p.help-block.text-danger
+          //-       | 								
+          //-       .col-md-6
+          //-         .form-group
+          //-           input#email.form-control(type="email", placeholder="Your Email *", required="", data-validation-required-message="Please enter your email address.")
+          //-           | 										
+          //-           p.help-block.text-danger
+          //-     | 							
+          //-     .row
+          //-       .col-md-12
+          //-         .form-group
+          //-           textarea#message.form-control(placeholder="Your Message *", required="", data-validation-required-message="Please enter a message.")
+          //-           | 										
+          //-           p.help-block.text-danger
+          //-       | 								
+          //-       .clearfix
+          //-     | 							
+          //-     .row
+          //-       .col-lg-12.text-center
+          //-         #success
+          //-         | 									
+          //-         button.btn(type="submit") Send Message
+    | 		
+    p#back-top
+      a(href="#top")
+        i.fa.fa-angle-up
+    //- script(type='text/javascript', src='/conm/page.js')
+    

@@ -1,0 +1,51 @@
+doctype html
+html
+  include inc/header
+  include inc/scripts
+  body.manageBody
+    section.light-bg.content.manage
+        // start: Content
+        .container-fluid-full
+            #content.span10            
+              .row-fluid.sortable
+                .box.span12
+                  .box-header(data-original-title="")
+                    h2#manageMenu
+                      button.muser
+                        i.halflings-icon.white.user
+                        .logoutDiv 
+                          | 退出
+                      a.manageNav(href='/manage/proList')
+                        span.break
+                        | 商品管理
+                      //- span
+                      //-   &nbsp;&gt; 二级菜单
+                    | 
+                    .theadbox
+                      .ops
+                        button.manageAdd
+                          span.addIcon.icons
+                            i.glyphicon.glyphicon-plus
+                          .addDiv 
+                            p.addPro 添加商品
+                            p.mUse 管理用户
+                            p.mSort 管理分类
+                            p.editAU 编辑公司介绍
+                        span.searchIcon.icons
+                          i.glyphicon.glyphicon-search
+                      .searchForm
+                        .input-group.searchGroup(style='display:none;')
+                          input#inputKey.form-control.searchInput(name="key", autocomplete="on", type="text", placeholder="输入关键字")
+                          span.input-group-addon.searchAddon.delSearch
+                            button.searchClose
+                              span.glyphicon.glyphicon-remove
+                      //- |                             
+                      //- a.btn-minimize(href="#")
+                      //-   i.halflings-icon.white.chevron-up
+                      //- |                             
+                      //- a.btn-close(href="#")
+                      //-   i.halflings-icon.white.remove
+                  block content
+    include inc/footer
+    script(src='/conm/proList.js')
+    block scripts

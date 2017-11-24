@@ -1,0 +1,60 @@
+extends manageLayout
+
+block content   
+    .box-content.prolist
+          -if(sorts == "{}")
+            p.noInfo 暂无商品分类
+            table.table.table-striped.table-bordered.bootstrap-datatable.datatable
+              thead
+                tr
+                  th ID
+                  |                                   
+                  th 类型名
+                  th 操作
+
+              |    
+              tbody
+                tr
+                  td.newId 1
+                  |                                 
+                  td.center
+                    input.addSortName(type='text' value='' ) 
+                  td.center
+                    .btn.btn-info.addSort
+                      i.halflings-icon.white.edit
+          -else
+            table.table.table-striped.table-bordered.bootstrap-datatable.datatable
+              thead
+                tr
+                  th ID
+                  |                                   
+                  th 类型名
+                  th 操作
+
+              |    
+              tbody
+                -var cnt = 0;
+                -for(var i in JSON.parse(sorts))
+                  -cnt += 1;
+                  tr.sortTr
+                    td #{i}
+                    |                                 
+                    td.center
+                      input.sortName(type='text' value='#{JSON.parse(sorts)[i]}' disabled) 
+                    td.center
+                      .btn.btn-info.sortEdit
+                        i.halflings-icon.white.edit
+                      a.btn.btn-danger(href="/manage/delSort/#{i}")
+                        i.halflings-icon.white.trash
+                tr
+                  td.newId #{cnt+1}
+                  |                                 
+                  td.center
+                    input.addSortName(type='text' value='' ) 
+                  td.center
+                    .btn.btn-info.addSort
+                      i.halflings-icon.white.edit
+    script.
+      if('#{msg}' != '')
+        window.wxc.xcConfirm('#{msg}', window.wxc.xcConfirm.typeEnum.info)
+    script(type='text/javascript', src='/conm/proList.js')

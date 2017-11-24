@@ -1,0 +1,76 @@
+extends manageLayout
+
+block content
+    .box-content.prolist
+      -if(vals == "{}")
+        p.noInfo 暂无商品信息
+      -else
+        table.table.table-striped.table-bordered.bootstrap-datatable.datatable
+          thead
+            tr
+              th ID
+              |                                   
+              th 分类
+              |                                   
+              th 商品名
+              |                                   
+              //- th 价格
+              |                                   
+              th 描述
+              |                                   
+              //- th 库存
+              |                                   
+              th 更新日期
+              |                                   
+              th 操作
+          |    
+          tbody
+            -for(var i in JSON.parse(vals))
+              -var curId = parseInt(i)+1;
+              tr 
+                td #{JSON.parse(vals)[i].pid}
+                //- td #{curId}
+                |                                 
+                td.center #{JSON.parse(sorts)[JSON.parse(vals)[i].sort]}
+                |                                 
+                td.center #{JSON.parse(vals)[i].pname}
+                |                                 
+                //- td.center ￥#{JSON.parse(vals)[i].price.toFixed(2) }
+                |                                 
+                td.center.overHid #{JSON.parse(vals)[i].desc_txt}
+                |                                 
+                //- td.center
+                  case JSON.parse(vals)[i].state
+                    when 1
+                      span.label.label-success 销 售
+                      //- span.label.label-success #{JSON.parse(vals)[i].state}
+                    when 2
+                      //- span.label.label-warning #{JSON.parse(vals)[i].state}
+                      span.label.label-warning 待 售
+                    when 3
+                      //- span.label.label-important #{JSON.parse(vals)[i].state}
+                      span.label.label-important 停 售
+                |                                 
+                td.center #{JSON.parse(vals)[i].up_date.substring(0,10)}
+                |                                 
+                td.center
+                  a.btn.btn-success(href="/manage/descPro/#{JSON.parse(vals)[i].pid}")
+                    i.halflings-icon.white.zoom-in
+                  |                                   
+                  a.btn.btn-info(href="/manage/editPro/#{JSON.parse(vals)[i].pid}")
+                    i.halflings-icon.white.edit
+                  |                                   
+                  a.btn.btn-danger(href="/manage/delPro/#{JSON.parse(vals)[i].pid}")
+                    i.halflings-icon.white.trash
+    script.
+      if('#{msg}' != '')
+        window.wxc.xcConfirm('#{msg}', window.wxc.xcConfirm.typeEnum.info)
+        //- alert('#{msg}')
+      //- console.log(!{vals})
+      //- console.log('valssss:','#{vals}' == '{}')
+      //- console.log('length:',!{vals}[0].up_date.length)
+      //- for(var i in !{sorts})
+      //-   console.log('iiiiii:',i)
+      //-   console.log('iiiiii:',!{vals}[i].pid)
+      //- console.log('pageCount:',#{pageCount})
+    script(type='text/javascript', src='/conm/proList.js')
