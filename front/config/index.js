@@ -10,7 +10,17 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+        '/api/*': {
+            //target: 'http://front.dev.rmos.com/',
+            target: 'http://localhost:3000',
+            pathRewrite: {
+                '^/api': ''
+            },
+            changeOrigin: true,
+            secure: false
+        }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
